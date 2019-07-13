@@ -21,14 +21,18 @@ $(document).ready(function() {
 			  success : function(success, status, xhr) {
 				if(success) {
 				//alert("Successfully Logged in");
+					toastr.success("Login Successful! Welcome");
 					window.globalVar = player_id;
 					window.location.href = 'home';
+
 				} else {
 					$("#SignIn").before("<div style='color:red;'>*User Name or Password incorrect</div>");
+					toastr.error("Incorrect Login or Password");
 				}
+
 			  },
 			  error : function(error, status) {
-				
+				toastr.error("Incorrect Login or Password");
 			  },
 			  dataType : "json",
 			  contentType: 'application/json'

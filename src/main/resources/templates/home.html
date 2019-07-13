@@ -4,10 +4,13 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/FontAwesome.css">
     <link rel="stylesheet" href="../css/css-stars.css">
+    <link rel="stylesheet" href="../css/game.css">
+    <link rel="stylesheet" href="../css/toastr.min.css">
     <meta charset="ISO-8859-1">
     <title>Home</title>
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/toastr.min.js"></script>
     <script src="../js/util.js"></script>
     <script src="../js/home.js"></script>
     <script src ="../js/userprofile.js"></script>
@@ -18,150 +21,6 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <style>
-    .h1, .h2, .h3, h1, h2, h3 {
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-        .btn-group button {
-            width: 100%;
-            display: block; /* Make the buttons appear below each other */
-        }
-        header, footer {
-    padding: 5px;
-	color: white;
-	background-color: gray;
-	clear: left;
-	text-align: center;
-}
-        .tabs-left>.nav-tabs
-        {
-
-        border-radius: 0px!important;
-        }
-        .column {
-            float: left;
-            width: 10%;
-            padding: 10px;
-        }
-
-        .button_style{
-            background-color: Transparent;
-            border: none;             /* Your can add different style/properties of button Here*/
-            cursor:pointer;
-            margin-left: 10px;
-            }
-
-            nav {
-	float: left;
-	max-width: 160px;
-	margin: 0;
-	padding: 1em;
-}
-
-nav ul {
-	list-style-type: none;
-	padding: 0;
-}
-
-nav ul a {
-	text-decoration: none;
-}
-
-.nav>li>a {
-    position: relative;
-    display: block;
-    padding: 10px 0px;
-}
-
-article {
-	margin-left: 170px;
-	border-left: 1px solid gray;
-	padding: 1em;
-	overflow: hidden;
-}
-
-.control-group {
-	margin: 1%;
-}
-
-.tabbable {
-	margin: 1%
-}
-
-.userdetails {
-	color: white;
-}
-
-.userdetailslabel {
-	color: black;
-	text-align: right;
-}
-
-tr.spaceUnder>td {
-	padding-bottom: 0.5em;
-}
-
-.inputsize {
-	width: 10%
-}
-
-/* Add Animation */
-@
--webkit-keyframes animatetop {
-	from {top: -300px;
-	opacity: 0
-}
-
-to {
-	top: 0;
-	opacity: 1
-}
-
-}
-@
-keyframes animatetop {
-	from {top: -300px;
-	opacity: 0
-}
-
-to {
-	top: 0;
-	opacity: 1
-}
-}
-
-#logout:hover{
- text-decoration: underline;
-}
-
-.deleteRating {
-	color: blue;
-	text-align: right
-}
-
-.deleteRating:hover {
-	text-decoration: underline;
-}
-
-.t {
-padding: 5px
-}
-.opt{
-    display: inline;
-    float: right;
-    margin-top: -28px;
-    margin-right: -69px;
-}
-
-table#ChaptersResult tbody  tr {
-    cursor : pointer;
-}
-
-.highlight {
- background-color: #D3D3D3;
-}
-</style>
 </head>
 
 <body>
@@ -180,8 +39,8 @@ table#ChaptersResult tbody  tr {
 
 <div class="tabbable row">
     <div class="col-md-2">
-    <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
-        <li><a href="#HomeContent" id="Home" data-toggle="tab">Home</a></li>
+    <ul id="nav-tabs-wrapper" class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#HomeContent" id="Home" data-toggle="tab" >Home</a></li>
         <li><a href="#UserProfileContent" id="UserProfile" data-toggle="tab">User Profile</a></li>
         <li><a href="#UserDashboardContent" id="UserDashboard" data-toggle="tab">Dashboard</a></li>
         <li><a href="#UserLeaderboardContent" id="UserLeaderboard" data-toggle="tab">Leaderboard</a></li>
@@ -189,172 +48,8 @@ table#ChaptersResult tbody  tr {
     </div>
 
     <div class="col-md-10 tab-content" align="center">
-        <div class="tab-pane" id="HomeContent" >
-            <form class="form-horizontal" style="width:50%">
-                <h1>Science Based Gamified E-Learning Application</h1>
-                <h2>Learn how to play with Science!!! </h2>
-                <div>
-                    <label >Gamification science refers to the development of theories of gamification design and their empirical evaluation within a post-positivist epistemology. The goal of gamification scientist-practitioners should be to understand how to best meet organizational goals through the design of gamification interventions, drawing upon insights derived from both gamification science and games research more broadly.</label>
-                </div>
-                <br>
-                <br>
-                <label>Check out the Biology Course</label>
-            </form>
-            <div class="control-group">
-                <button id="BiologyCourse" class="btn">Biology Course</button>
-            </div>
-
+        <div class="game-tab-content">
         </div>
-        <div class="tab-pane" id="UserProfileContent">
-            <form class="form-horizontal">
-                <h2>User Profile</h2>
-                <div class="control-group">
-                    <label class="control-label" for="playername">Player Name</label>
-                    <div class="controls">
-                        <input type="text" id="playernametxt" readonly>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="proficiency">Proficiency Level</label>
-                    <div class="dropdown">
-                        <select id="proficiencyDropDown">
-                            <option><a href="#">BEGINNER</a></option>
-                            <option><a href="#">INTERMEDIATE</a></option>
-                            <option><a href="#">EXPERT</a></option>
-                        </select>
-                    </div>
-                </div>
-
-                <div style="margin-left: 100px;">
-                    <button id="UpdateProfile" class="btn">Update Profile</button>
-                </div>
-
-
-            </form>
-
-        </div>
-        <div class="tab-pane" id="UserLeaderboardContent">
-            <h2>View User Leaderboard</h2>
-            <table class="table table-striped" id="UserLeaderboardResult">
-                <thead>
-                <tr>
-                    <th>Player ID</th>
-                    <th>Player Name</th>
-                    <th>Proficiency</th>
-                    <th>Rating</th>
-                    <th>Level</th>
-                    <th>Badges</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1001</td>
-                    <td>Shreya Karnawat</td>
-                    <td>BEGINNER</td>
-                    <td>5 Star</td>
-                    <td>6th Level</td>
-
-                </tr>
-                <tr>
-                    <td>1012</td>
-                    <td>Garmin nuvi 200</td>
-                    <td>ADVANCED</td>
-                    <td>1 Star</td>
-                    <td>2nd Level</td>
-
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="tab-pane" id="UserDashboardContent">
-            <h2>View User Dashboard</h2>
-            <form class="form-horizontal">
-                <div class="control-group">
-                    <label class="control-label" for="playername">Player Name</label>
-                    <div class="controls">
-                        <input type="text" id="playername" readonly>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="rating">Rating</label>
-                    <div class="controls">
-                        <input type="text" id="rating" readonly>
-                    </div>
-                </div>
-                <div id="piechart"></div>
-                <div class="control-group">
-                    <label class="control-label" for="proficiency">Proficiency</label>
-                    <div class="controls">
-                        <input type="text" id="proficiency" readonly>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="level">Level</label>
-                    <div class="controls">
-                        <input type="text" id="level" readonly>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="numbadgesearned">Badges Earned</label>
-                    <div class="controls">
-                        <input type="text" id="numbadgesearned" readonly>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <div id="CoursePage" align="center" style="display: none">
-            <div class="container" style="border: 1px solid #ccc; width: 100%;">
-            <h3>Science -> Biology</h3>
-            <label>Biology is the branch of science dealing with the study of life. It describes the characteristics, classification, and behaviors of organisms, how species come into existence, and the interactions they have with each other and with the environment. Biology has many specialized areas, covering a wide range of scales, from biochemistry to ecology.</label>
-            <br>
-            <p>See the list of Chapters</p>
-            <table class="table table-striped" id="ChaptersResult">
-                <tbody>
-                <tr>
-                    <td>Human</td>
-                </tr>
-                <tr>
-                    <td>Human</td>
-                </tr>
-                </tbody>
-            </table>
-
-            </table>
-            </div>
-        </div>
-        <div class="control-group" id="ChapterPage" align="center" style="display: none">
-            <h3><span id="headerTxt"></span></h3>
-            <label id="chapterTxt">Human anatomy ? scientific study of the morphology of the adult human. It is subdivided into gross anatomy and microscopic anatomy. Gross anatomy (also called topographical anatomy, regional anatomy, or anthropotomy) is the study of anatomical structures that can be seen by unaided vision. Microscopic anatomy is the study of minute anatomical structures assisted with microscopes, and includes histology (the study of the organization of tissues), and cytology (the study of cells).</label>
-            <br>
-            <img src="../images/humanorgans.jpg" alt="Human Anatomy" style="width:128px;height:128px;">
-            <br>
-            <div style="margin-top: 50px;">
-                <button id="Questions">Start with Questions</button>
-            </div>
-
-        </div>
-
-        <div class="control-group" id="QuestionsPage" align="center" style="display: none">
-            <h3><span id="questionsHeaderTxt"></span></h3>
-            <label id="QuestionNumber">Question 1</label>
-            <br>
-            <label id="QuestionText"></label>
-            <div id="optionList">
-                <!--<label id="option1"><input type="radio" name="option" value="option1">Option 1</label><br>-->
-                <!--<label><input type="radio" name="option" value="option2">Option 2</label><br>-->
-                <!--<label><input type="radio" name="option" value="option3">Option 3</label><br>-->
-                <!--<label><input type="radio" name="option" value="option4">Option 4</label><br>-->
-            </div>
-
-            <div style="margin-top: 50px;">
-                <button id="NextQuestion">Next</button>
-            </div>
-
-        </div>
-
-
-
     </div>
     <div id="alertModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
         <div class="modal-dialog modal-sm" role="document">
@@ -386,7 +81,7 @@ table#ChaptersResult tbody  tr {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="doDelete">Yes</button>
-                    <button type="button" class="btn btn-default"id="doNotDelete">No</button>
+                    <button type="button" class="btn btn-default" id="doNotDelete">No</button>
                 </div>
             </div>
         </div>

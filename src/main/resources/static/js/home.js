@@ -23,6 +23,10 @@ $(document).ready(
 
                 });
 
+                 $(function(){
+                      $("#includedContent").load("b.html");
+                    });
+
                     //Fetches user details from the Server
                     				function getUserDetails (){
                     					$.ajax({
@@ -32,6 +36,7 @@ $(document).ready(
                                               // console.log(data)
                     							window.globalVar = data;
                     							console.log(window.globalVar);
+                    							 $(".game-tab-content").load("landing");
                     							$("#UserProfileContent").css("display","none");
                                                $("#UserDashboardContent").css("display","none");
                                                $("#UserLeaderboardContent").css("display","none");
@@ -61,49 +66,39 @@ $(document).ready(
 
 
                     $("#UserProfile").on('click', function() {
-                        $("#playernametxt").val(window.globalVar)
-                    	$("#UserProfileContent").css("display","block");
-                    	 $("#HomeContent").css("display","none");
-                         $("#UserDashboardContent").css("display","none");
-                         $("#UserLeaderboardContent").css("display","none");
+                        $(".game-tab-content").load("profile");
+//                        $("#playernametxt").val(window.globalVar)
+//                    	$("#UserProfileContent").css("display","block");
+//                    	 $("#HomeContent").css("display","none");
+//                         $("#UserDashboardContent").css("display","none");
+//                         $("#UserLeaderboardContent").css("display","none");
                     });
 
                      $("#Home").on('click', function() {
-                          $("#HomeContent").css("display","block");
-                          $("#UserProfileContent").css("display","none");
-                          $("#UserDashboardContent").css("display","none");
-                          $("#UserLeaderboardContent").css("display","none");
+                        $(".game-tab-content").load("landing");
+//                          $("#HomeContent").css("display","block");
+//                          $("#UserProfileContent").css("display","none");
+//                          $("#UserDashboardContent").css("display","none");
+//                          $("#UserLeaderboardContent").css("display","none");
                      });
 
                     $("#UserLeaderboard").on('click', function () {
-                        $("#HomeContent").css("display","none");
-                        $("#UserProfileContent").css("display","none");
-                        $("#UserDashboardContent").css("display","none");
-                        $("#UserLeaderboardContent").css("display","block");
+                    $(".game-tab-content").load("leaderboard");
                         displayUserLeaderboard();
                     });
 
                     $("#UserDashboard").on('click', function () {
-                        $("#HomeContent").css("display","none");
-                        $("#UserProfileContent").css("display","none");
-                        $("#UserDashboardContent").css("display","block");
-                        $("#UserLeaderboardContent").css("display","none");
+                        $(".game-tab-content").load("dashboard");
                         displayUserDashboard();
                      });
 
                      $("#BiologyCourse").on('click', function (e) {
-                            e.stopPropagation();
-                            $("#HomeContent").css("display","none");
-                     	    $("#CoursePage").css("display","block");
+                        $(".game-tab-content").load("course");
                      	    fetchChapters();
                      });
 
                      $("#Questions").on('click', function (e) {
                            e.stopPropagation();
-                           $("#HomeContent").css("display","none");
-                           $("#CoursePage").css("display","none");
-                           $("#ChapterPage").css("display","none");
-                           $("#QuestionsPage").css("display", "block");
                            fetchQuestions(window.selectedChapterId);
 
 

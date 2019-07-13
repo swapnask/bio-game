@@ -1,67 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="ISO-8859-1">
-    <title>Questions</title>
-    <script src="../js/jquery-3.2.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/util.js"></script>
-    <script src="../js/home.js"></script>
-    <script src ="../js/userprofile.js"></script>
-    <script src ="../js/leaderboard.js"></script>
-    <script src ="../js/dashboard.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <style>
-        .btn-group button {
-            width: 100%;
-            display: block; /* Make the buttons appear below each other */
-        }
-        .tabs-left>.nav-tabs
-        {
-
-        border-radius: 0px!important;
-        }
-        .column {
-            float: left;
-            width: 10%;
-            padding: 10px;
-        }
-
-        /* Clear floats after the columns */
-        .row:after {
-          content: "";
-          display: table;
-          clear: both;
-        }
-        .button_style{
-            background-color: Transparent;
-            border: none;             /* Your can add different style/properties of button Here*/
-            cursor:pointer;
-            margin-left: 10px;
-            }
-</style>
-</head>
-
-<body>
-<div style="margin-left: 100px;" >
-    <h3>Science -> Biology -> Human Anatomy -> Questions</h3>
-    <label id="QuestionNumber">Question 1</label>
-    <br>
-    <label id="QuestionText"></label>
-    <input type="radio" name="gender" value="option1"> Option 1<br>
-    <input type="radio" name="gender" value="option2"> Option 2<br>
-    <input type="radio" name="gender" value="option3"> Option 3<br>
-    <input type="radio" name="gender" value="option 4"> Option 4<br>
-    <div style="margin-top: 50px;">
-        <button id="Next">Next</button>
-    </div>
-
-
+<h3><span id="questionsHeaderTxt"></span></h3>
+<label id="QuestionNumber">Question 1</label>
+<br>
+<label id="QuestionText"></label>
+<div id="optionList">
+    <!--<label id="option1"><input type="radio" name="option" value="option1">Option 1</label><br>-->
+    <!--<label><input type="radio" name="option" value="option2">Option 2</label><br>-->
+    <!--<label><input type="radio" name="option" value="option3">Option 3</label><br>-->
+    <!--<label><input type="radio" name="option" value="option4">Option 4</label><br>-->
 </div>
 
-</body>
-</html>
+<div style="margin-top: 50px;">
+    <button id="NextQuestion">Next</button>
+</div>

@@ -1,0 +1,145 @@
+   .h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+        .btn-group button {
+            width: 100%;
+            display: block; /* Make the buttons appear below each other */
+        }
+        header, footer {
+    padding: 5px;
+	color: white;
+	background-color: gray;
+	clear: left;
+	text-align: center;
+}
+        .tabs-left>.nav-tabs
+        {
+
+        border-radius: 0px!important;
+        }
+        .column {
+            float: left;
+            width: 10%;
+            padding: 10px;
+        }
+
+        .button_style{
+            background-color: Transparent;
+            border: none;             /* Your can add different style/properties of button Here*/
+            cursor:pointer;
+            margin-left: 10px;
+            }
+
+            nav {
+	float: left;
+	max-width: 160px;
+	margin: 0;
+	padding: 1em;
+}
+
+nav ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+nav ul a {
+	text-decoration: none;
+}
+
+
+article {
+	margin-left: 170px;
+	border-left: 1px solid gray;
+	padding: 1em;
+	overflow: hidden;
+}
+
+.control-group {
+	margin: 1%;
+}
+
+.tabbable {
+	margin: 1%
+}
+
+.userdetails {
+	color: white;
+}
+
+.userdetailslabel {
+	color: black;
+	text-align: right;
+}
+
+tr.spaceUnder>td {
+	padding-bottom: 0.5em;
+}
+
+.inputsize {
+	width: 10%
+}
+
+/* Add Animation */
+@
+-webkit-keyframes animatetop {
+	from {top: -300px;
+	opacity: 0
+}
+
+to {
+	top: 0;
+	opacity: 1
+}
+
+}
+@
+keyframes animatetop {
+	from {top: -300px;
+	opacity: 0
+}
+
+to {
+	top: 0;
+	opacity: 1
+}
+}
+
+#logout:hover{
+ text-decoration: underline;
+}
+
+.deleteRating {
+	color: blue;
+	text-align: right
+}
+
+.deleteRating:hover {
+	text-decoration: underline;
+}
+
+.t {
+padding: 5px
+}
+.opt{
+    display: inline;
+    float: right;
+    margin-top: -28px;
+    margin-right: -69px;
+}
+
+table#ChaptersResult tbody  tr {
+    cursor : pointer;
+}
+
+.highlight {
+ background-color: #D3D3D3;
+}
+
+#nav-tabs-wrapper {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+}

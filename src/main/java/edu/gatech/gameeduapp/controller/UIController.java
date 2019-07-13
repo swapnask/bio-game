@@ -32,6 +32,16 @@ public class UIController {
   @RequestMapping("/questions")
   public  String questions(Map<String, Object> model) {return "questions"; }
 
+  @RequestMapping("/leaderboard")
+  public  String leaderboard(Map<String, Object> model) {return "leaderboard"; }
+
+  @RequestMapping("/landing")
+  public  String landing(Map<String, Object> model) {return "landing"; }
+
+  @RequestMapping("/dashboard")
+  public  String dashboard(Map<String, Object> model) {return "dashboard"; }
+
+
   @RequestMapping("/submission")
   public  String submission(Map<String, Object> model) {return "submission"; }
 
