@@ -1,45 +1,43 @@
-
 function displayUserLeaderboard() {
-		// if(window.globalVar == undefined){
-		// 	window.location.href = 'web';
-		// }
-		$.ajax({
-			type : "GET",
-			url : "gameeduapp/leaderboard/player/WVs",
-			success : function(data, status, xhr) {
-				console.log("success:", data);
-				var html = '';
-				$("#UserLeaderboardResult tbody tr").remove();
-				if(data.length == 0){
-					html += '<tr><td>' + "-" +
-					'</td><td>' + "-" +
-					'</td><td>' + "-" +
-					'</td><td>' + "-" +
-					'</td><td>' + "-" +
-					'</td><td>' + "-" +
-					'</td></tr>';
-					$("#UserLeaderboardResult tbody").append(html);
-				}
-				else {
-                     for(var i = 0; i < data.length ; i++){
-                        html += '<tr><td>' + data[i].playerId +
-                        					'</td><td>' + data[i].playerName +
-                        					'</td><td>' + data[i].proficiency +
-                        					'</td><td>' + data[i].rating +
-                        					'</td><td>' + data[i].level +
-                        					'</td><td>' + data[i].badgeList.count +
-                        					'</td></tr>';
-                     }
-                     $("#UserLeaderboardResult tbody").append(html);
+    // if(window.globalVar == undefined){
+    // 	window.location.href = 'web';
+    // }
+    $.ajax({
+        type: "GET",
+        url: "gameeduapp/leaderboard/player/WVs",
+        success: function (data, status, xhr) {
+            console.log("success:", data);
+            var html = '';
+            $("#UserLeaderboardResult tbody tr").remove();
+            if (data.length == 0) {
+                html += '<tr><td>' + "-" +
+                    '</td><td>' + "-" +
+                    '</td><td>' + "-" +
+                    '</td><td>' + "-" +
+                    '</td><td>' + "-" +
+                    '</td><td>' + "-" +
+                    '</td></tr>';
+                $("#UserLeaderboardResult tbody").append(html);
+            } else {
+                for (var i = 0; i < data.length; i++) {
+                    html += '<tr><td>' + data[i].playerId +
+                        '</td><td>' + data[i].playerName +
+                        '</td><td>' + data[i].proficiency +
+                        '</td><td>' + data[i].rating +
+                        '</td><td>' + data[i].level +
+                        '</td><td>' + data[i].badgeList.count +
+                        '</td></tr>';
+                }
+                $("#UserLeaderboardResult tbody").append(html);
 
-				}
+            }
 
-			},
-			error : function(error, status, xhr) {
-				console.log(error);
-			},
-			dataType : "json",
-			contentType : 'application/json'
-		});
+        },
+        error: function (error, status, xhr) {
+            console.log(error);
+        },
+        dataType: "json",
+        contentType: 'application/json'
+    });
 
 }
