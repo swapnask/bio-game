@@ -26,7 +26,8 @@ mvnw
 mvnw.cmd
 
 #Intellij
-.idea
+.idea/
+*.iml
 
 #H2
 mem/
