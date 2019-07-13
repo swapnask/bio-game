@@ -49,15 +49,15 @@ public class GameController {
     List<Player> playerList = playerRepo.findAll();
     List<LeaderBoard> leaderBoardList = new LinkedList<>();
 
-    if(playerId.isPresent()) {
+    if (playerId.isPresent()) {
       Player player = playerRepo.findById(playerId.get()).get();
       List<BadgeType> badgeList = new LinkedList<>();
       player.getBadgeList().forEach((badge) -> {
         badgeList.add(badge.getBadgeType());
       });
       String name = player.getFirstName() + player.getLastName();
-      LeaderBoard leaderBoardEntry = new LeaderBoard(player.getPlayerId(), name,player.getProficiency().toString(), player.getLevel(), player.getRating(),
-          player.getGamesPlayed(), player.getCorrectAns(), player.getIncorrectAns(), badgeList );
+      LeaderBoard leaderBoardEntry = new LeaderBoard(player.getPlayerId(), name, player.getProficiency().toString(), player.getLevel(), player.getRating(),
+          player.getGamesPlayed(), player.getCorrectAns(), player.getIncorrectAns(), badgeList);
       leaderBoardList.add(leaderBoardEntry);
     } else {
       for (Player player : playerList) {
@@ -65,8 +65,9 @@ public class GameController {
         player.getBadgeList().forEach((badge) -> {
           badgeList.add(badge.getBadgeType());
         });
-        LeaderBoard leaderBoardEntry = new LeaderBoard(player.getPlayerId(), player.getLevel(), player.getRating(),
-            player.getGamesPlayed(), player.getCorrectAns(), player.getIncorrectAns(), badgeList );
+        String name = player.getFirstName() + player.getLastName();
+        LeaderBoard leaderBoardEntry = new LeaderBoard(player.getPlayerId(), name, player.getProficiency().toString(), player.getLevel(), player.getRating(),
+            player.getGamesPlayed(), player.getCorrectAns(), player.getIncorrectAns(), badgeList);
         leaderBoardList.add(leaderBoardEntry);
       }
     }
@@ -85,15 +86,15 @@ public class GameController {
 
     String playerId = qaObj.getPlayerId();
     Player player = playerRepo.findById(playerId).get();
-    if(answer.equals(qaObj.getAnswer())) {
+    if (answer.equals(qaObj.getAnswer())) {
       Integer correctAns = player.getCorrectAns();
-      correctAns+=1;
+      correctAns += 1;
       player.setCorrectAns(correctAns);
       playerRepo.save(player);
       return true;
     } else {
       Integer incorrectAns = player.getIncorrectAns();
-      incorrectAns+=1;
+      incorrectAns += 1;
       player.setIncorrectAns(incorrectAns);
       playerRepo.save(player);
     }
@@ -106,8 +107,8 @@ public class GameController {
     Integer correctAns = player.getCorrectAns();
     Integer incorrectAns = player.getIncorrectAns();
     int totalAns = correctAns + incorrectAns;
-    Float percentCorrect = Float.valueOf((correctAns /totalAns) *100);
-    if(percentCorrect > 90) {
+    Float percentCorrect = Float.valueOf((correctAns / totalAns) * 100);
+    if (percentCorrect > 90) {
       Set<Badge> badgeList = player.getBadgeList();
       Badge badge = new Badge();
       badge.setBadgeType(BadgeType.POWER2);
