@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class GameConfig {
-
   @Bean
   @Scope("singleton")
   CurrentPlayer currentPlayer() {

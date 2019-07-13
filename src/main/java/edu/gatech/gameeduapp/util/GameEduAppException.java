@@ -3,9 +3,8 @@ package edu.gatech.gameeduapp.util;
 import org.springframework.http.HttpStatus;
 
 public class GameEduAppException extends RuntimeException {
-  String errorMessage;
-
-  HttpStatus errorCode;
+  private String errorMessage;
+  private HttpStatus errorCode;
 
   public GameEduAppException(String errorMessage, HttpStatus errorCode) {
     super();

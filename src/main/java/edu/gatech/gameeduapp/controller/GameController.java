@@ -1,16 +1,33 @@
 package edu.gatech.gameeduapp.controller;
 
 import edu.gatech.gameeduapp.datatype.BadgeType;
-import edu.gatech.gameeduapp.model.*;
+import edu.gatech.gameeduapp.model.Badge;
+import edu.gatech.gameeduapp.model.Chapter;
+import edu.gatech.gameeduapp.model.Player;
+import edu.gatech.gameeduapp.model.Question;
 import edu.gatech.gameeduapp.pojo.LeaderBoard;
 import edu.gatech.gameeduapp.pojo.QuesAnsObject;
 import edu.gatech.gameeduapp.pojo.RatingLevelObject;
-import edu.gatech.gameeduapp.repository.*;
+import edu.gatech.gameeduapp.repository.BadgeRepository;
+import edu.gatech.gameeduapp.repository.ChapterRepository;
+import edu.gatech.gameeduapp.repository.OptionRepository;
+import edu.gatech.gameeduapp.repository.PlayerRepository;
+import edu.gatech.gameeduapp.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.websocket.server.PathParam;
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @RequestMapping("/gameeduapp")
 @RestController
@@ -34,14 +51,12 @@ public class GameController {
   @GetMapping("/question")
   public List<Question> getQuestionsOfChapterId(@RequestParam("chapterId") Integer chapterId, @RequestParam("playerId") String playerId) {
     Optional<Player> player = playerRepo.findById(playerId);
-    List<Question> questionList = questionRepo.getQuestionFromChapterWithProficiency(chapterId, player.get().getProficiency());
-    return questionList;
+    return questionRepo.getQuestionFromChapterWithProficiency(chapterId, player.get().getProficiency());
   }
 
   @GetMapping("/chaptermodel/{chapterName}")
   public Chapter getChapterModel(@PathVariable("chapterName") String chapterName) {
-    Chapter chapterModel = chapterRepo.getChapterModel(chapterName);
-    return chapterModel;
+    return chapterRepo.getChapterModel(chapterName);
   }
 
   @GetMapping(value = {"/leaderboard/player/{playerId}", "/leaderboard/player"})
@@ -52,9 +67,7 @@ public class GameController {
     if (playerId.isPresent()) {
       Player player = playerRepo.findById(playerId.get()).get();
       List<BadgeType> badgeList = new LinkedList<>();
-      player.getBadgeList().forEach((badge) -> {
-        badgeList.add(badge.getBadgeType());
-      });
+      player.getBadgeList().forEach((badge) -> badgeList.add(badge.getBadgeType()));
       String name = player.getFirstName() + player.getLastName();
       LeaderBoard leaderBoardEntry = new LeaderBoard(player.getPlayerId(), name, player.getProficiency().toString(), player.getLevel(), player.getRating(),
           player.getGamesPlayed(), player.getCorrectAns(), player.getIncorrectAns(), badgeList);
@@ -62,9 +75,7 @@ public class GameController {
     } else {
       for (Player player : playerList) {
         List<BadgeType> badgeList = new LinkedList<>();
-        player.getBadgeList().forEach((badge) -> {
-          badgeList.add(badge.getBadgeType());
-        });
+        player.getBadgeList().forEach((badge) -> badgeList.add(badge.getBadgeType()));
         String name = player.getFirstName() + player.getLastName();
         LeaderBoard leaderBoardEntry = new LeaderBoard(player.getPlayerId(), name, player.getProficiency().toString(), player.getLevel(), player.getRating(),
             player.getGamesPlayed(), player.getCorrectAns(), player.getIncorrectAns(), badgeList);
@@ -107,7 +118,7 @@ public class GameController {
     Integer correctAns = player.getCorrectAns();
     Integer incorrectAns = player.getIncorrectAns();
     int totalAns = correctAns + incorrectAns;
-    Float percentCorrect = Float.valueOf((correctAns / totalAns) * 100);
+    float percentCorrect = (float) ((correctAns / totalAns) * 100);
     if (percentCorrect > 90) {
       Set<Badge> badgeList = player.getBadgeList();
       Badge badge = new Badge();

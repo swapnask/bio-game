@@ -1,54 +1,51 @@
 package edu.gatech.gameeduapp.model;
 
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import java.util.Set;
 
 @Entity
 public class Chapter {
+  @Column
+  @Id
+  private Integer chapterId;
 
-	@Column
-	@Id
-	private Integer chapterId;
-	
-	@Column
-	private String conceptText;
+  @Column
+  private String conceptText;
 
-	@Column
-	private String link;
-	
-	@Column
-	private String chapterName;
-	
-	@Column
-	private Integer level;
-	
-	@OneToMany(fetch= FetchType.EAGER, cascade= CascadeType.ALL, mappedBy="chapter")
-	private Set<Question> questionList;
+  @Column
+  private String link;
 
-	public Integer getChapterId() {
-		return chapterId;
-	}
+  @Column
+  private String chapterName;
 
-	public String getConceptText() {
-		return conceptText;
-	}
+  @Column
+  private Integer level;
 
-	public String getLink() {
-		return link;
-	}
+  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "chapter")
+  private Set<Question> questionList;
 
-	public String getChapterName() {
-		return chapterName;
-	}
+  public Integer getChapterId() {
+    return chapterId;
+  }
 
-	public Integer getLevel() {
-		return level;
-	}
+  public String getConceptText() {
+    return conceptText;
+  }
+
+  public String getLink() {
+    return link;
+  }
+
+  public String getChapterName() {
+    return chapterName;
+  }
+
+  public Integer getLevel() {
+    return level;
+  }
 }

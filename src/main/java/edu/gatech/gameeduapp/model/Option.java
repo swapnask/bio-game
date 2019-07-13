@@ -8,26 +8,22 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Option {
+  @Column
+  @Id
+  private Integer optionId;
 
-//	@EmbeddedId
-//	private OptionIdentifier opId;
-	
-	@Column
-	@Id
-	private Integer optionId;
-	
-	@Column
-	private String optionText;
-	
-	@ManyToOne
-	@JoinColumn(name="question_id")
-	private Question question;
+  @Column
+  private String optionText;
 
-	public Integer getOptionId() {
-		return optionId;
-	}
+  @ManyToOne
+  @JoinColumn(name = "question_id")
+  private Question question;
 
-	public String getOptionText() {
-		return optionText;
-	}
+  public Integer getOptionId() {
+    return optionId;
+  }
+
+  public String getOptionText() {
+    return optionText;
+  }
 }
