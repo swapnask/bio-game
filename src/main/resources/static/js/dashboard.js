@@ -1,17 +1,19 @@
 //var num_correct_ans = 0;
 //var num_incorrect_ans = 0;
 function drawChart(num_correct_ans, num_incorrect_ans) {
-    var data = google.visualization.arrayToDataTable([
-        ['Task', 'Number'],
-        ['Number of Correct Answers', num_correct_ans],
-        ['Number of Incorrect Answers', num_incorrect_ans]
-    ]);
+    setTimeout(function() {
+        var data = google.visualization.arrayToDataTable([
+            ['Task', 'Number'],
+            ['Number of Correct Answers', num_correct_ans],
+            ['Number of Incorrect Answers', num_incorrect_ans]
+        ]);
 
-    var options = {'title': 'My Progress', 'width': 650, 'height': 400};
+        var options = {'title': 'My Progress', 'width': 650, 'height': 400};
 
-    // Display the chart inside the <div> element with id="piechart"
-    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-    chart.draw(data, options);
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+    },3000);
 }
 
 function displayUserDashboard() {
@@ -34,7 +36,8 @@ function displayUserDashboard() {
             $("#rating").val(data[0].rating);
             $("#proficiency").val(data[0].proficiency);
             $("#level").val(data[0].level);
-            $("#numbadgesearned").val(data[0].badgeList)
+            $("#numbadgesearned").val( badgeMap[data[0].currentLevel] );
+            $("#gamesPlayed").val(data[0].gamesPlayed);
             var num_correct_ans = data[0].correctAns;
             var num_incorrect_ans = data[0].incorrectAns;
             if (num_correct_ans > 0 && num_incorrect_ans > 0) {

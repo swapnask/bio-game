@@ -1,10 +1,10 @@
 package edu.gatech.gameeduapp.controller;
 
 import edu.gatech.gameeduapp.datatype.BadgeType;
-import edu.gatech.gameeduapp.model.Badge;
 import edu.gatech.gameeduapp.model.Chapter;
 import edu.gatech.gameeduapp.model.Player;
 import edu.gatech.gameeduapp.model.Question;
+import edu.gatech.gameeduapp.pojo.GameResult;
 import edu.gatech.gameeduapp.pojo.LeaderBoard;
 import edu.gatech.gameeduapp.pojo.QuesAnsObject;
 import edu.gatech.gameeduapp.pojo.RatingLevelObject;
@@ -23,11 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @RequestMapping("/gameeduapp")
 @RestController
@@ -51,7 +49,11 @@ public class GameController {
   @GetMapping("/question")
   public List<Question> getQuestionsOfChapterId(@RequestParam("chapterId") Integer chapterId, @RequestParam("playerId") String playerId) {
     Optional<Player> player = playerRepo.findById(playerId);
-    return questionRepo.getQuestionFromChapterWithProficiency(chapterId, player.get().getProficiency());
+//    return questionRepo.getQuestionFromChapterWithProficiency(chapterId, player.get().getProficiency());
+    List<Question> questionList = questionRepo.getQuestionFromChapterWithLevel(chapterId, player.get().getLevel());
+    if(questionList.isEmpty())
+      return new LinkedList<Question>();
+    return questionList.subList(0, 5 > questionList.size() ? questionList.size() : 5);
   }
 
   @GetMapping("/chaptermodel/{chapterName}")
@@ -104,31 +106,42 @@ public class GameController {
       playerRepo.save(player);
       return true;
     } else {
-      Integer incorrectAns = player.getIncorrectAns();
-      incorrectAns += 1;
-      player.setIncorrectAns(incorrectAns);
-      playerRepo.save(player);
+      if(qaObj.getAttemptNo() >= 1) {
+        Integer incorrectAns = player.getIncorrectAns();
+        incorrectAns += 1;
+        player.setIncorrectAns(incorrectAns);
+        playerRepo.save(player);
+      }
     }
     return false;
   }
 
   @PostMapping("/endGame")
-  public void endGame(@RequestParam("playerId") String playerId) {
+  public GameResult endGame(@RequestParam("playerId") String playerId) {
     Player player = playerRepo.findById(playerId).get();
     Integer correctAns = player.getCorrectAns();
     Integer incorrectAns = player.getIncorrectAns();
     int totalAns = correctAns + incorrectAns;
-    float percentCorrect = (float) ((correctAns / totalAns) * 100);
-    if (percentCorrect > 90) {
-      Set<Badge> badgeList = player.getBadgeList();
-      Badge badge = new Badge();
-      badge.setBadgeType(BadgeType.POWER2);
-      Badge badge1 = new Badge();
-      badge1.setBadgeType(BadgeType.POWER3);
-      badgeList.addAll(Arrays.asList(badge, badge1));
-      badgeRepo.saveAll(Arrays.asList(badge, badge1));
-      playerRepo.save(player);
+    float percentCorrect = (float)correctAns/(float)totalAns * 100;
+    System.out.println("Percent Correct : "+ percentCorrect);
+    GameResult result = null;
+    if (percentCorrect > 50) {
+//      Set<Badge> badgeList = player.getBadgeList();
+//      Badge badge = new Badge();
+//      badge.setBadgeType(BadgeType.POWER2);
+//      Badge badge1 = new Badge();
+//      badge1.setBadgeType(BadgeType.POWER3);
+//      badgeList.addAll(Arrays.asList(badge, badge1));
+//      badgeRepo.saveAll(Arrays.asList(badge, badge1));
+
+      result = new GameResult(true, player.getLevel(),player.getLevel() + 1, playerId );
+      player.setLevel(player.getLevel() + 1);
+    }  else {
+      result = new GameResult(false, player.getLevel(),player.getLevel(), playerId );
     }
+    player.setGamesPlayed(player.getGamesPlayed()+1);
+    playerRepo.save(player);
+    return result;
   }
 
   @PutMapping("/updateLeaderboard/{playerId}")

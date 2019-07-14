@@ -75,7 +75,6 @@ $(document).ready(
                 $("#BiologyCourse").on('click', function (e) {
                     $(".game-tab-content").load("course", function () {
                         fetchChapters();
-
                     });
                 });
             });
@@ -92,10 +91,6 @@ $(document).ready(
             $(".game-tab-content").load("dashboard", function () {
                 displayUserDashboard();
             });
-
         });
-
-
-
 
     });

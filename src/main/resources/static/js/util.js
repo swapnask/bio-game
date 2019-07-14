@@ -26,3 +26,10 @@ function makeid(length) {
     }
     return result;
 }
+
+var badgeMap={
+    1: "Newbie",
+    2: "Getting there",
+    3: "Go Getter",
+    4: "Guru"
+};

@@ -67,6 +67,7 @@ function displayChapterDetails(chapterId, chapterName, chapterText, chapterLink)
         chapterId = chapterId;
         document.getElementById("headerTxt").innerHTML = chapterName;
         document.getElementById("chapterTxt").innerHTML = chapterText;
+        $("#chapterImg").attr("src", chapterLink);
         initQuestions();
     })
 

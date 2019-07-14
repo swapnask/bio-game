@@ -29,6 +29,9 @@ public class Question {
   @Enumerated
   private Proficiency proficiency;
 
+  @Column
+  private Integer level;
+
   @ManyToOne
   @JoinColumn(name = "chapter_id")
   private Chapter chapter;
@@ -58,5 +61,9 @@ public class Question {
 
   public Set<Option> getOptionList() {
     return optionList;
+  }
+
+  public Integer getLevel() {
+    return level;
   }
 }

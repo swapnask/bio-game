@@ -11,45 +11,40 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
-<form class="form-horizontal">
-    <legend style="margin-left: 100px;">New User
-        Registration</legend>
-    <div class="control-group">
-        <label class="control-label" for="firstname">First Name</label>
-        <div class="controls">
-            <input type="text" id="firstname" placeholder="First Name">
+<div class="container">
+    <div class="container-fluid">
+        <form class="form-horizontal">
+            <h2 style="margin-left: 100px;">New User
+                Registration
+            </h2>
+            <div class="form-group">
+                <label class="control-label" for="firstname">First Name</label>
+                <input type="text" class="form-control" id="firstname" placeholder="First Name">
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="lastname">Last Name</label>
+                <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="player_id">Player ID</label>
+                <input type="text" class="form-control" id="player_id" placeholder="User Name">
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="password">Password</label>
+                <input class="form-control" type="password" id="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="confirmpassword">Confirm
+                    Password</label>
+                <input class="form-control" type="password" id="confirmpassword"
+                       placeholder="Confirm Password">
+            </div>
+        </form>
+        <div>
+            <button id="Register" class="btn">Register</button>
+            <button id="Cancel" class="btn">Cancel</button>
         </div>
     </div>
-    <div class="control-group">
-        <label class="control-label" for="lastname">Last Name</label>
-        <div class="controls">
-            <input type="text" id="lastname" placeholder="Last Name">
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="player_id">Player ID</label>
-        <div class="controls">
-            <input type="text" id="player_id" placeholder="User Name">
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="password">Password</label>
-        <div class="controls">
-            <input type="password" id="password" placeholder="Password">
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="confirmpassword">Confirm
-            Password</label>
-        <div class="controls">
-            <input type="password" id="confirmpassword"
-                   placeholder="Confirm Password">
-        </div>
-    </div>
-</form>
-<div style="margin-left: 100px;">
-    <button id="Register" class="btn">Register</button>
-    <button id="Cancel" class="btn">Cancel</button>
 </div>
 
 

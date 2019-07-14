@@ -21,13 +21,13 @@ $(document).ready(
             var result = validateObjectFields(dataObject, fields);
             console.log(result);
             if (result.fieldsMissing == true) {
-                alert(result.msg);
+                toastr.warning(result.msg);
             } else if (confirmpassword !== password) {
-                alert("Passwords do not match!");
+                toastr.warning("Passwords do not match!");
             } else if (isNumeric(firstName)) {
-                alert("First name cannot contain digits.");
+                toastr.warning("First name cannot contain digits.");
             } else if (isNumeric(lastName)) {
-                alert("Last name cannot contain digits.");
+                toastr.warning("Last name cannot contain digits.");
             } else {
                 console.log(JSON.stringify(dataObject));
                 $.ajax({
@@ -35,11 +35,11 @@ $(document).ready(
                     url: "/gameeduapp/register",
                     data: JSON.stringify(dataObject),
                     success: function (success, status, xhr) {
-                        alert("Successfully registered");
+                        toastr.success("Successfully registered");
                         window.location.href = 'web';
                     },
                     error: function (error, status) {
-                        alert("Failed to register: ", error);
+                        toastr.error("Failed to register: "+ error);
                         console.log(error);
                     },
                     contentType: 'application/json'

@@ -13,4 +13,7 @@ import java.util.List;
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
   @Query("select q from Question q WHERE q.chapter.chapterId = :chapterId AND q.proficiency = :proficiency")
   List<Question> getQuestionFromChapterWithProficiency(@Param("chapterId") Integer chapterId, @Param("proficiency") Proficiency proficiency);
+
+  @Query("select q from Question q WHERE q.chapter.chapterId = :chapterId AND q.level = :level")
+  List<Question> getQuestionFromChapterWithLevel(@Param("chapterId") Integer chapterId, @Param("level") Integer level);
 }

@@ -52,7 +52,7 @@ public class LoginController {
     if (playerRepo.existsById(regObject.getPlayerId())) {
       throw new GameEduAppException("Player with same PlayerId already present", HttpStatus.INTERNAL_SERVER_ERROR);
     }
-    Player player = new Player(regObject.getPlayerId(), regObject.getFirstName(), regObject.getLastName(), regObject.getPassword(), regObject.getProficiency(), 0, 0, 0, 0, 0);
+    Player player = new Player(regObject.getPlayerId(), regObject.getFirstName(), regObject.getLastName(), regObject.getPassword(), regObject.getProficiency(), 0, 1, 0, 0, 0);
     playerRepo.save(player);
   }
 
